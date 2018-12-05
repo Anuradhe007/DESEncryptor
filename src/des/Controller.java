@@ -60,10 +60,38 @@ public class Controller {
 
     @FXML
     public void encryptTextBtnClick() {
+        DESEncryption desEncryption = new DESEncryption();
+        String textInput1 = "";
+        if(inputText.getText() != null) {
+            textInput1 = inputText.getText().trim();
+        }
+        if (passwordField.getText() != null) {
+            String phraseKey = passwordField.getText().trim();
+            desEncryption.cipherGenerator(phraseKey);
+            if(!textInput1.isEmpty()) {
+                String encryptedText = desEncryption.encrypt(textInput1);
+                outPutText.clear();
+                outPutText.setText(encryptedText);
+            }
+        }
     }
 
     @FXML
     public void decryptTextBtnClick() {
+        DESEncryption desEncryption = new DESEncryption();
+        String textInput1 = "";
+        if(inputText.getText() != null) {
+            textInput1 = inputText.getText().trim();
+        }
+        if (passwordField.getText() != null) {
+            String phraseKey = passwordField.getText().trim();
+            desEncryption.cipherGenerator(phraseKey);
+            if(!textInput1.isEmpty()) {
+                String decryptedText = desEncryption.decrypt(textInput1);
+                outPutText.clear();
+                outPutText.setText(decryptedText);
+            }
+        }
     }
 
     @FXML
@@ -76,10 +104,23 @@ public class Controller {
 
     @FXML
     public void clearBtnClick() {
+        inputText.clear();
+        outPutText.clear();
+        passwordField.clear();
+        fileLocations.clear();
+        Image image = new Image(getClass().getResourceAsStream("views/drag-drop-files.png"));
+        browseOrDragFiles.setImage(image);
     }
 
     @FXML
     public void copyTextBtnClick() {
+        if(outPutText.getText() != null) {
+            final Clipboard clipboard = Clipboard.getSystemClipboard();
+            final ClipboardContent content = new ClipboardContent();
+            String textToCopy = outPutText.getText().trim();
+            content.putString(textToCopy);
+            clipboard.setContent(content);
+        }
     }
 
     @FXML
