@@ -1,11 +1,12 @@
 package des;
+
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.stage.FileChooser;
@@ -49,6 +50,15 @@ public class Controller {
     private JFXButton clearBtn;
 
     @FXML
+    public void initialize() {
+        encryptTxtBtn.setStyle("-fx-background-color: #66B2FF;");
+        decryptTxtBtn.setStyle("-fx-background-color: #FF99FF;");
+        encryptFileBtn.setStyle("-fx-background-color: #66B2FF;");
+        decryptFileBtn.setStyle("-fx-background-color: #FF99FF;");
+        clearBtn.setStyle("-fx-background-color: #33FF99;");
+    }
+
+    @FXML
     public void encryptTextBtnClick() {
     }
 
@@ -78,29 +88,34 @@ public class Controller {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open File");
         File file = fileChooser.showOpenDialog(stage);
-        fileLocations.setText(file.toString());
+        if (file != null) {
+            Image image = new Image(getClass().getResourceAsStream("views/file.jpg"));
+            browseOrDragFiles.setImage(image);
+            fileLocations.setText(file.toString());
+        }
     }
 
     @FXML
     public void dragFiles(DragEvent event) {
-        System.out.println("onDragDrop");
-        Object obj;
         Dragboard db = event.getDragboard();
         boolean success = false;
-        if (db.hasFiles()){
+        if (db.hasFiles()) {
+            File file = db.getFiles().get(0);
+            Image image = new Image(getClass().getResourceAsStream("views/file.jpg"));
+            browseOrDragFiles.setImage(image);
+            fileLocations.setText(file.toString());
             success = true;
-            System.out.println("onDragDrop");
         }
-    /* let the source know whether the string was successfully
-     * transferred and used */
         event.setDropCompleted(success);
         event.consume();
     }
 
     @FXML
-    private void handleDragDetected(MouseEvent event) {
-        System.out.println("onDragDetected");
-        Dragboard db=browseOrDragFiles.startDragAndDrop(TransferMode.MOVE);
+    private void dragEntered(DragEvent event) {
+        Dragboard db = event.getDragboard();
+        if (db.hasFiles()) {
+            event.acceptTransferModes(TransferMode.COPY);
+        }
         event.consume();
     }
 }

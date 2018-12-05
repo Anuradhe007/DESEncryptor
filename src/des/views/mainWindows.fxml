@@ -24,7 +24,7 @@
       <Label layoutX="11.0" layoutY="175.0" text="Output Text" />
       <TextArea fx:id="outPutText" layoutX="95.0" layoutY="151.0" prefHeight="78.0" prefWidth="237.0" />
       <Button fx:id="copyTextOutputBtn" layoutX="95.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="237.0" text="Copy Output Text" onAction="#copyTextBtnClick"/>
-      <ImageView fx:id="browseOrDragFiles" fitHeight="197.0" fitWidth="319.0" layoutX="344.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#browseFileClick" onDragDetected="#handleDragDetected" onDragDropped="#dragFiles">
+      <ImageView fx:id="browseOrDragFiles" fitHeight="197.0" fitWidth="319.0" layoutX="344.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#browseFileClick" onDragOver="#dragEntered" onDragDropped="#dragFiles">
          <image>
             <Image url="@drag-drop-files.png"/>
          </image>
