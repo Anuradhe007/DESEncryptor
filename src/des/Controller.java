@@ -13,6 +13,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 public class Controller {
 
@@ -62,13 +64,13 @@ public class Controller {
     public void encryptTextBtnClick() {
         DESEncryption desEncryption = new DESEncryption();
         String textInput1 = "";
-        if(inputText.getText() != null) {
+        if (inputText.getText() != null) {
             textInput1 = inputText.getText().trim();
         }
         if (passwordField.getText() != null) {
             String phraseKey = passwordField.getText().trim();
             desEncryption.cipherGenerator(phraseKey);
-            if(!textInput1.isEmpty()) {
+            if (!textInput1.isEmpty()) {
                 String encryptedText = desEncryption.encrypt(textInput1);
                 outPutText.clear();
                 outPutText.setText(encryptedText);
@@ -80,13 +82,13 @@ public class Controller {
     public void decryptTextBtnClick() {
         DESEncryption desEncryption = new DESEncryption();
         String textInput1 = "";
-        if(inputText.getText() != null) {
+        if (inputText.getText() != null) {
             textInput1 = inputText.getText().trim();
         }
         if (passwordField.getText() != null) {
             String phraseKey = passwordField.getText().trim();
             desEncryption.cipherGenerator(phraseKey);
-            if(!textInput1.isEmpty()) {
+            if (!textInput1.isEmpty()) {
                 String decryptedText = desEncryption.decrypt(textInput1);
                 outPutText.clear();
                 outPutText.setText(decryptedText);
@@ -96,10 +98,34 @@ public class Controller {
 
     @FXML
     public void encryptFileBtnClick() {
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Enrypted File");
+        File fileDest = fileChooser.showSaveDialog(stage);
+        if (fileDest != null) {
+            FileEncryptor fileEncryptor = new FileEncryptor();
+            String inputFilePath = fileLocations.getText();
+            String password = passwordField.getText();
+            if (inputFilePath != null && password != null) {
+                fileEncryptor.encryptFile(inputFilePath, fileDest.toString(), password);
+            }
+        }
     }
 
     @FXML
     public void decryptFileBtnClick() {
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Decrypted File");
+        File fileDest = fileChooser.showSaveDialog(stage);
+        if (fileDest != null) {
+            FileEncryptor fileEncryptor = new FileEncryptor();
+            String inputFilePath = fileLocations.getText();
+            String password = passwordField.getText();
+            if (inputFilePath != null && password != null) {
+                fileEncryptor.decryptFile(inputFilePath, fileDest.toString(), password);
+            }
+        }
     }
 
     @FXML
@@ -114,7 +140,7 @@ public class Controller {
 
     @FXML
     public void copyTextBtnClick() {
-        if(outPutText.getText() != null) {
+        if (outPutText.getText() != null) {
             final Clipboard clipboard = Clipboard.getSystemClipboard();
             final ClipboardContent content = new ClipboardContent();
             String textToCopy = outPutText.getText().trim();
