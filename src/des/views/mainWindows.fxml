@@ -11,10 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="425.0" prefWidth="673.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="235.0" layoutY="14.0" text="Encrypt Images, Text and Folders" textFill="#ae1077">
+      <Label layoutX="235.0" layoutY="14.0" text="Encrypt Files, Text and Folders" textFill="#ae1077">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -23,19 +22,23 @@
       <TextArea fx:id="inputText" layoutX="95.0" layoutY="59.0" prefHeight="78.0" prefWidth="237.0" />
       <Label layoutX="11.0" layoutY="175.0" text="Output Text" />
       <TextArea fx:id="outPutText" layoutX="95.0" layoutY="151.0" prefHeight="78.0" prefWidth="237.0" />
-      <Button fx:id="copyTextOutputBtn" layoutX="95.0" layoutY="243.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="237.0" text="Copy Output Text" onAction="#copyTextBtnClick"/>
-      <ImageView fx:id="browseOrDragFiles" fitHeight="197.0" fitWidth="319.0" layoutX="344.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#browseFileClick" onDragOver="#dragEntered" onDragDropped="#dragFiles">
+      <Button fx:id="copyTextOutputBtn" layoutX="95.0" layoutY="243.0" mnemonicParsing="false" onAction="#copyTextBtnClick" prefHeight="25.0" prefWidth="237.0" text="Copy Output Text" />
+      <ImageView fx:id="browseOrDragFiles" fitHeight="197.0" fitWidth="319.0" layoutX="344.0" layoutY="59.0" onDragDropped="#dragFiles" onDragOver="#dragEntered" onMouseClicked="#browseFileClick" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@drag-drop-files.png"/>
+            <Image url="@drag-drop-files.png" />
          </image>
       </ImageView>
-      <Label layoutX="11.0" layoutY="284.0" text="Password" />
-      <JFXPasswordField fx:id="passwordField" layoutX="95.0" layoutY="280.0" prefHeight="25.0" prefWidth="564.0" />
-      <JFXTextField fx:id="fileLocations" layoutX="351.0" layoutY="243.0" prefHeight="25.0" prefWidth="307.0" />
-      <JFXButton fx:id="encryptTxtBtn" layoutX="95.0" layoutY="336.0" text="Encrypt Text" onAction="#encryptTextBtnClick"/>
-      <JFXButton fx:id="decryptTxtBtn" layoutX="188.0" layoutY="336.0" text="Decrypt Text" onAction="#decryptTextBtnClick"/>
-      <JFXButton fx:id="encryptFileBtn" layoutX="285.0" layoutY="336.0" text="Encrypt File(s)" onAction="#encryptFileBtnClick"/>
-      <JFXButton fx:id="decryptFileBtn" layoutX="401.0" layoutY="336.0" text="Decrypt File(s)" onAction="#decryptFileBtnClick"/>
-      <JFXButton fx:id="clearBtn" layoutX="524.0" layoutY="336.0" text="Clear" onAction="#clearBtnClick"/>
+      <Label layoutX="11.0" layoutY="341.0" text="Password" />
+      <JFXPasswordField fx:id="passwordField" layoutX="95.0" layoutY="337.0" prefHeight="25.0" prefWidth="564.0" />
+      <JFXTextField fx:id="fileLocations" layoutX="93.0" layoutY="303.0" prefHeight="25.0" prefWidth="564.0" />
+      <JFXButton fx:id="encryptTxtBtn" layoutX="95.0" layoutY="386.0" onAction="#encryptTextBtnClick" text="Encrypt Text" />
+      <JFXButton fx:id="decryptTxtBtn" layoutX="194.0" layoutY="386.0" onAction="#decryptTextBtnClick" text="Decrypt Text" />
+      <JFXButton fx:id="encryptFileBtn" layoutX="320.0" layoutY="386.0" onAction="#encryptFileBtnClick" text="Encrypt File/Folder" />
+      <JFXButton fx:id="decryptFileBtn" layoutX="464.0" layoutY="386.0" onAction="#decryptFileBtnClick" text="Decrypt File/Folder" />
+      <JFXButton fx:id="clearBtn" layoutX="606.0" layoutY="386.0" onAction="#clearBtnClick" text="Clear" />
+      <Label layoutX="11.0" layoutY="307.0" text="File location" />
+      <Button fx:id="selectFolderBtn" layoutX="351.0" layoutY="243.0" mnemonicParsing="false" onAction="#clickSelectFolderBtn" prefHeight="25.0" prefWidth="142.0" text="Select Folder to Encrypt" />
+      <Button fx:id="selectFolderToDecrypt" layoutX="504.0" layoutY="243.0" mnemonicParsing="false" onAction="#clickSelectFolderToDecryptBtn" prefHeight="25.0" prefWidth="154.0" text="Select Folder to Decrypt" />
+      <Label layoutX="417.0" layoutY="42.0" text="Select files to encrypt or decrypt." />
    </children>
 </AnchorPane>

@@ -14,8 +14,9 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("views/mainWindows.fxml"));
         loader.setController(controller);
         Parent root = loader.load();
-        primaryStage.setTitle("DES Encryptor");
-        primaryStage.setScene(new Scene(root, 700, 400));
+        primaryStage.setTitle("Security Application");
+        primaryStage.resizableProperty().setValue(Boolean.FALSE);
+        primaryStage.setScene(new Scene(root, 700, 425));
         primaryStage.show();
     }
 

@@ -1,5 +1,7 @@
 package des;
 
+import javafx.scene.control.Alert;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,7 +23,10 @@ public class FileEncryptor {
             FileOutputStream fos = new FileOutputStream(outputFilename);
             encrypt(password, fis, fos);
         } catch (Throwable e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Please make sure you have provided correct details.");
+            alert.showAndWait();
         }
     }
 
@@ -31,7 +36,10 @@ public class FileEncryptor {
             FileOutputStream fos2 = new FileOutputStream(outputFilename);
             decrypt(password, fis2, fos2);
         } catch (Throwable e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Error Dialog");
+            alert.setHeaderText("Please make sure you have provided correct details.");
+            alert.showAndWait();
         }
     }
 
